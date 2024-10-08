@@ -15,31 +15,34 @@ window.onload = function() {
 };
 
 document.getElementById("submit").addEventListener('click', () => {
-    let amount = Number(document.getElementById("money").value);
-    document.getElementById("popup").style.display = "none";
-
-    if (document.getElementById("popup").dataset.source === "kp") {
-        ka += amount;
+    try{
+        let amount = Number(document.getElementById("money").value);
+        document.getElementById("popup").style.display = "none";
+    
+        if (document.getElementById("popup").dataset.source === "kp") {
+            ka += amount;
+            localStorage.setItem('ka', ka);
+            document.getElementById("khushi").innerText = `${ka}`;
+        } else if (document.getElementById("popup").dataset.source === "np") {
+            na += amount;
+            localStorage.setItem('na', na);
+            document.getElementById("niharika").innerText = `${na}`;
+        }
+    
+        if (ka >= na) {
+            ka -= na;
+            na = 0;
+        } else {
+            na -= ka;
+            ka = 0;
+        }
+        document.getElementById("khushi").innerText = ka;
+        document.getElementById("niharika").innerText = na;
         localStorage.setItem('ka', ka);
-        document.getElementById("khushi").innerText = `${ka}`;
-    } else if (document.getElementById("popup").dataset.source === "np") {
-        na += amount;
         localStorage.setItem('na', na);
-        document.getElementById("niharika").innerText = `${na}`;
+    }catch(error){
+        alert("please enter valid input")
     }
-
-    if (ka >= na) {
-        ka -= na;
-        na = 0;
-    } else {
-        na -= ka;
-        ka = 0;
-    }
-    document.getElementById("khushi").innerText = ka;
-    document.getElementById("niharika").innerText = na;
-    localStorage.setItem('ka', ka);
-    localStorage.setItem('na', na);
-    document.getElementById("money").value=none;
 });
 
 kp.addEventListener('click', () => {
