@@ -39,6 +39,7 @@ document.getElementById("submit").addEventListener('click', () => {
     document.getElementById("niharika").innerText = na;
     localStorage.setItem('ka', ka);
     localStorage.setItem('na', na);
+    document.getElementById("money").value=none;
 });
 
 kp.addEventListener('click', () => {
